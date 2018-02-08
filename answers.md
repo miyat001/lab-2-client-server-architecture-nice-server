@@ -22,3 +22,10 @@ api/users?age=25: Returns users.json with the arguements age=25 applied. This gi
 
 api/users/588935f5de613130e931ffd5: Return users.json with "588935f5de613130e931ffd5" ID person data.
 
+Q6: The contents of the public folder are the resources that are used in the project. The HTML files display different pages with different content. The users.html files purpose it to display the content relating to users.
+
+Q7: When you filter users by age in the client it returns the JsonObject for those with the same age entered. The age is read from the web page as an input in a text field. The age information is sent to server. The server display users.html file with argument provided.
+
+
+Q8: It is defined in resourse/public/javascript/users.js. This file is used by users.html.
+
