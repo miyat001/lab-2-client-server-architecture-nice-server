@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Todos</title>
+  <link rel="stylesheet" type="text/css" href="css/todos.css">
+  <script type="text/javascript" src="javascript/todos.js"> </script>
+</head>
+<body>
+<button type="button" id="getAll">Get All Todos</button>
+
+<hr/>
+
+<div id="jsonDump" style="margin-top:20px"> Json will go here </div>
+
+status: <input id="status" type= "text" name="status">
+<button type="button" id="getTodosByStatus"> get todos by status </button>
+
+
+<script>
+  window.onload = function() {
+    console.log("The page is loaded now!");
+
+    var element = document.getElementById('getAll');
+    element.addEventListener("click", getAllTodos, true);
+
+    element = document.getElementById('getUsersByAge');
+    element.addEventListener("click", getAllTodosByStatus, true);
+  }
+</script>
+</body>
+</html>
