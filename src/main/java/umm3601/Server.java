@@ -50,6 +50,8 @@ public class Server {
     // List todos, filtered using query parameters
     get("api/todos", todoController::getTodos);
 
+    get("api/todos/:id", todoController::getTodo);
+
 
 
     // An example of throwing an unhandled exception so you can see how the
