@@ -56,6 +56,11 @@ public class TodoDatabase {
       int targetLimit = Integer.parseInt(queryParams.get("limit")[0]);
       filteredTodos = filterTodosByLimit(filteredTodos, targetLimit);
     }
+    if (queryParams.containsKey("contains")) {
+      String targetContains = queryParams.get("contains")[0];
+      filteredTodos = filterTodosByContains(filteredTodos, targetContains);
+    }
+
 
     // Process other query parameters here...
 
@@ -77,6 +82,14 @@ public class TodoDatabase {
   public Todo[] filterTodosByLimit(Todo[] todos, int targetLimit) {
     return Arrays.stream(todos).limit(targetLimit).toArray(Todo[]::new);
 
+  }
+  public Todo[] filterTodosByContains(Todo[] todos, String targetContains) {
+    return Arrays.stream(todos).filter(x -> checkBody(x.body, targetContains)).toArray(Todo[]::new);
+
+  }
+
+  private boolean checkBody(String body, String targetContains) {
+    return body.toLowerCase().contains(targetContains.toLowerCase());
   }
 
 }
