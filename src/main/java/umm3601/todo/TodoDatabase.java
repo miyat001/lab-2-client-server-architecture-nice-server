@@ -49,13 +49,20 @@ public class TodoDatabase {
 
     // Filter complete if defined
     if (queryParams.containsKey("status")) {
-      boolean targetStatus = Boolean.parseBoolean(queryParams.get("status")[0]);
-      filteredTodos = filterTodosByStatus(filteredTodos, targetStatus);
+      String targetStatus = queryParams.get("status")[0];
+
+      if (targetStatus.equals("complete")) {
+        filteredTodos = filterTodosByStatus(filteredTodos, true);
+      } else if (targetStatus.equals("incomplete")) {
+        filteredTodos = filterTodosByStatus(filteredTodos, false);
+      }
     }
+
     if (queryParams.containsKey("limit")) {
       int targetLimit = Integer.parseInt(queryParams.get("limit")[0]);
       filteredTodos = filterTodosByLimit(filteredTodos, targetLimit);
     }
+
     if (queryParams.containsKey("contains")) {
       String targetContains = queryParams.get("contains")[0];
       filteredTodos = filterTodosByContains(filteredTodos, targetContains);
