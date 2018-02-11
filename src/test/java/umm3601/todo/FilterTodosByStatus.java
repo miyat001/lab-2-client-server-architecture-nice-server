@@ -10,7 +10,7 @@ import static junit.framework.TestCase.assertEquals;
 
 public class FilterTodosByStatus {
   @Test
-  public void filterUsersByAge() throws IOException {
+  public void filterTodosByStatus() throws IOException {
     TodoDatabase db = new TodoDatabase("src/main/data/todos.json");
     Todo[] allTodos = db.listTodos(new HashMap<>());
 
@@ -22,7 +22,7 @@ public class FilterTodosByStatus {
   }
 
   @Test
-  public void listUsersWithAgeFilter() throws IOException {
+  public void listTodosWithStatusFilter() throws IOException {
     TodoDatabase db = new TodoDatabase("src/main/data/todos.json");
     Map<String, String[]> queryParams = new HashMap<>();
 

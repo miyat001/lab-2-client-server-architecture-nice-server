@@ -48,12 +48,15 @@ public class TodoDatabase {
     Todo[] filteredTodos = allTodos;
 
     // Filter complete if defined
-    if(queryParams.containsKey("status")) {
+    if (queryParams.containsKey("status")) {
       boolean targetStatus = Boolean.parseBoolean(queryParams.get("status")[0]);
       filteredTodos = filterTodosByStatus(filteredTodos, targetStatus);
-
-
     }
+    if (queryParams.containsKey("limit")) {
+      int targetLimit = Integer.parseInt(queryParams.get("limit")[0]);
+      filteredTodos = filterTodosByLimit(filteredTodos, targetLimit);
+    }
+
     // Process other query parameters here...
 
     return filteredTodos;
@@ -62,13 +65,18 @@ public class TodoDatabase {
   /**
    * Get an array of all the todos having the target status.
    *
-   * @param todos the list of todos to filter by status
+   * @param todos        the list of todos to filter by status
    * @param targetStatus the target status to look for
    * @return an array of all the users from the given list that have
    * the target age
    */
   public Todo[] filterTodosByStatus(Todo[] todos, boolean targetStatus) {
     return Arrays.stream(todos).filter(x -> x.status == targetStatus).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterTodosByLimit(Todo[] todos, int targetLimit) {
+    return Arrays.stream(todos).limit(targetLimit).toArray(Todo[]::new);
+
   }
 
 }
