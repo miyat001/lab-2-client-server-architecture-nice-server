@@ -13,7 +13,12 @@
 
 <div id="jsonDump" style="margin-top:20px"> Json will go here </div>
 
-status: <input id="status" type= "text" name="status">
+<form>
+  <select name = "dropdown" id="status">
+    <option value = true selected>Complete</option>
+    <option value = false>Incomplete</option>
+  </select>
+</form>
 <button type="button" id="getTodosByStatus"> get todos by status </button>
 
 

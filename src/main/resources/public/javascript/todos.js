@@ -21,6 +21,8 @@ function getAllTodosByStatus() {
   HttpThingy.get("/api/todos?status=" +  document.getElementById("status").value, function(returned_json){
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
+
+
 }
 
 /**

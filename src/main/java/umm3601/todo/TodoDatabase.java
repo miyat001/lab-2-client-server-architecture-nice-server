@@ -2,6 +2,7 @@ package umm3601.todo;
 
 import com.google.gson.Gson;
 
+import javax.script.ScriptEngine;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
@@ -50,6 +51,8 @@ public class TodoDatabase {
     if(queryParams.containsKey("status")) {
       boolean targetStatus = Boolean.parseBoolean(queryParams.get("status")[0]);
       filteredTodos = filterTodosByStatus(filteredTodos, targetStatus);
+
+
     }
     // Process other query parameters here...
 
