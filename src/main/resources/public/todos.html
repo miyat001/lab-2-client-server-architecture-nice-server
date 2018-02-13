@@ -8,43 +8,59 @@
 </head>
 <body>
 
+<div class="container">
 
-<form>
-  Status: <select name = "dropdown" id="status">
-    <option value = ""></option>
-    <option value = "complete" >Complete</option>
-    <option value = "incomplete">Incomplete</option>
-  </select>
-  <br>
-  Number of responses: <input type = "number" id = "limit"/>
-  <br>
-  Contains string: <input type = "text" id = "contains"/>
-  <br>
-  ID: <input type = "text" id = "id"/>
-  <br>
-  Owner: <input type = "text" id = "owner"/>
-  <br>
-  Catergory: <select name ="dropdown" id="category">
-    <option value = ""></option>
-    <option value = "homework">homework</option>
-    <option value = "groceries">groceries</option>
-    <option value = "video games">video games</option>
-    <option value = "software design">software design</option>
-  </select>
-</form>
+  <div class="getByFilters">
+    <h5>Filter Todos By:</h5>
 
-<br>
-<button type="button" id="getAll">Get All Todos</button>
-<button type="button" id="getID">Get ID</button>
+    <form>
+      <label>Status:</label> <select name = "dropdown" id="status">
+      <option value = "">Choose a status</option>
+      <option value = "complete" >Complete</option>
+      <option value = "incomplete">Incomplete</option>
+    </select>
+      <br>
+      <label>Category:</label> <select name ="dropdown" id="category">
+      <option value = "">Choose a category</option>
+      <option value = "homework">Homework</option>
+      <option value = "groceries">Groceries</option>
+      <option value = "video games">Video Games</option>
+      <option value = "software design">Software Design</option>
+    </select>
+      <br>
+      <label>Owner:</label> <input type = "text" id = "owner" placeholder="Name of owner"/>
+      <br>
+      <label>Body Phrase:</label> <input type = "text" id = "contains" placeholder="Word or phrase here"/>
+      <br>
+      <label>Limit:</label> <input type = "number" id = "limit" placeholder="Number of shown todos"/>
 
-<button type="button" id="getTodosByFilter"> get todos by filter </button>
-
-<hr/>
-
-<div id="jsonDump" style="margin-top:20px"> Json will go here </div>
+      <br>
+      <button type="button" id="getAll">Get All Todos</button>
+      <button type="button" id="getTodosByFilter"> Get Filtered Todos </button>
+      <button type="reset">Reset Form</button>
+    </form>
 
 
 
+
+
+
+  </div>
+
+  <div class="getById">
+    <h5>Get Todo By ID:</h5>
+    <input type = "text" id = "id" placeholder="ID# here"/>
+    <button type="button" id="getID" >Get Todo</button>
+  </div>
+</div>
+
+
+
+<div class="jsonReturn">
+  <hr/>
+
+  <div id="jsonDump" style="margin-top:20px"> Json will go here </div>
+</div>
 
 
 
