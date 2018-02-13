@@ -80,6 +80,15 @@ function getAllTodosByFilter() {
     }
   }
 
+  if(document.getElementById("orderBy").value != ""){
+    if(isFiltered){
+      todoURL = todoURL + "&orderBy=" + document.getElementById("orderBy").value;
+    }else{
+      todoURL = todoURL + "?orderBy=" + document.getElementById("orderBy").value;
+      isFiltered = true;
+    }
+  }
+
 
 
   var HttpThingy = new HttpClient();

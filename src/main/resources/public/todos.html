@@ -33,6 +33,15 @@
       <label>Body Phrase:</label> <input type = "text" id = "contains" placeholder="Word or phrase here"/>
       <br>
       <label>Limit:</label> <input type = "number" id = "limit" placeholder="Number of shown todos"/>
+      <br>
+      <label>Order By:</label> <select name ="dropdown" id="orderBy">
+      <option value = "">Choose a order</option>
+      <option value = "status">Status</option>
+      <option value = "owner">Owner</option>
+      <option value= "body">Body</option>
+      <option value = "category">Category</option>
+      <option value = "_id">ID</option>
+    </select>
 
       <br>
       <button type="button" id="getAll">Get All Todos</button>
