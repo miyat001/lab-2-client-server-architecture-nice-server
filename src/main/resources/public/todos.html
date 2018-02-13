@@ -7,19 +7,38 @@
   <script type="text/javascript" src="javascript/todos.js"> </script>
 </head>
 <body>
+
+
+<form>
+  <select name = "dropdown" id="status">
+    <option value = ""></option>
+    <option value = "complete" >Complete</option>
+    <option value = "incomplete">Incomplete</option>
+  </select>
+</form>
+
+<form>
+  Number of responses: <input type = "number" id = "limit"/>
+  <br>
+  Contains string: <input type = "text" id = "contains"/>
+  <br>
+  ID: <input type = "text" id = "id"/>
+
+</form>
+
+<br>
 <button type="button" id="getAll">Get All Todos</button>
+<button type="button" id="getID">Get ID</button>
+
+<button type="button" id="getTodosByFilter"> get todos by filter </button>
 
 <hr/>
 
 <div id="jsonDump" style="margin-top:20px"> Json will go here </div>
 
-<form>
-  <select name = "dropdown" id="status">
-    <option value = "complete" >Complete</option>
-    <option value = "incomplete">Incomplete</option>
-  </select>
-</form>
-<button type="button" id="getTodosByStatus"> get todos by status </button>
+
+
+
 
 
 <script>
@@ -29,8 +48,11 @@
     var element = document.getElementById('getAll');
     element.addEventListener("click", getAllTodos, true);
 
-    element = document.getElementById('getTodosByStatus');
-    element.addEventListener("click", getAllTodosByStatus, true);
+    element = document.getElementById('getTodosByFilter');
+    element.addEventListener("click", getAllTodosByFilter, true);
+
+    element = document.getElementById('getID');
+    element.addEventListener("click", getID, true);
   }
 </script>
 </body>
