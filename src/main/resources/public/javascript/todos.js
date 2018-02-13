@@ -39,14 +39,6 @@ function getAllTodosByFilter() {
     }
   }
 
-  if(document.getElementById("limit").value != ""){
-    if(isFiltered){
-      todoURL = todoURL + "&limit=" + document.getElementById("limit").value;
-    }else{
-      todoURL = todoURL + "?limit=" + document.getElementById("limit").value;
-      isFiltered = true;
-    }
-  }
 
   if(document.getElementById("contains").value != ""){
     if(isFiltered){
@@ -70,11 +62,32 @@ function getAllTodosByFilter() {
 
     }
 
+  if(document.getElementById("category").value != ""){
+    if(isFiltered){
+      todoURL = todoURL + "&category=" + document.getElementById("category").value;
+    }else{
+      todoURL = todoURL + "?category=" + document.getElementById("category").value;
+      isFiltered = true;
+    }
+
+  }
+  if(document.getElementById("limit").value != ""){
+    if(isFiltered){
+      todoURL = todoURL + "&limit=" + document.getElementById("limit").value;
+    }else{
+      todoURL = todoURL + "?limit=" + document.getElementById("limit").value;
+      isFiltered = true;
+    }
+  }
+
+
 
   var HttpThingy = new HttpClient();
   HttpThingy.get(todoURL, function(returned_json){
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
+
+
 }
 
 
