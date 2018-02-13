@@ -48,6 +48,7 @@ public class TodoDatabase {
     Todo[] filteredTodos = allTodos;
 
     // Filter complete if defined
+
     if (queryParams.containsKey("status")) {
       String targetStatus = queryParams.get("status")[0];
 
@@ -58,11 +59,6 @@ public class TodoDatabase {
       }
     }
 
-    if (queryParams.containsKey("limit")) {
-      int targetLimit = Integer.parseInt(queryParams.get("limit")[0]);
-      filteredTodos = filterTodosByLimit(filteredTodos, targetLimit);
-    }
-
     if (queryParams.containsKey("contains")) {
       String targetContains = queryParams.get("contains")[0];
       filteredTodos = filterTodosByContains(filteredTodos, targetContains);
@@ -71,6 +67,16 @@ public class TodoDatabase {
     if(queryParams.containsKey("owner")){
       String targetOwners = queryParams.get("owner")[0];
       filteredTodos = filterTodosByOwners(filteredTodos, targetOwners);
+    }
+
+    if(queryParams.containsKey("category")){
+      String targetCategory = queryParams.get("category")[0];
+      filteredTodos = filterTodosByCategory(filteredTodos, targetCategory);
+    }
+
+    if (queryParams.containsKey("limit")) {
+      int targetLimit = Integer.parseInt(queryParams.get("limit")[0]);
+      filteredTodos = filterTodosByLimit(filteredTodos, targetLimit);
     }
 
 
@@ -103,6 +109,11 @@ public class TodoDatabase {
   public Todo[] filterTodosByOwners(Todo[] todos, String targetOwners){
     return Arrays.stream(todos).filter(x -> x.owner.equals(targetOwners)).toArray(Todo[]::new);
   }
+
+  public Todo[] filterTodosByCategory(Todo[] todos, String targetCategory){
+    return Arrays.stream(todos).filter(x -> x.category.equals (targetCategory)).toArray(Todo[]::new);
+  }
+
 
   private boolean checkBody(String body, String targetContains) {
     return body.toLowerCase().contains(targetContains.toLowerCase());
