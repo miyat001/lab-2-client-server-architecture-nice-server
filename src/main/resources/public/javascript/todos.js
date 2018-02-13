@@ -2,6 +2,9 @@
 // for the first definition, and the named function syntax
 // for the second definition?
 
+
+
+
 /**
  * Function to get all the users!
  */
@@ -13,15 +16,59 @@ function getAllTodos() {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
-
-function getAllTodosByStatus() {
-  console.log("Getting all the todos.");
+function getID(){
+  console.log("Getting ID.");
 
   var HttpThingy = new HttpClient();
-  HttpThingy.get("/api/todos?status=" +  document.getElementById("status").value, function(returned_json){
+  HttpThingy.get("/api/todos/" + document.getElementById("id").value, function(returned_json){
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
+
+function getAllTodosByFilter() {
+  console.log("Getting all the todos.");
+
+  var todoURL= "/api/todos";
+  var isFiltered = false;
+  if(document.getElementById("status").value != ""){
+    if(isFiltered){
+      todoURL = todoURL + "&status=" + document.getElementById("status").value;
+    }else{
+      todoURL = todoURL + "?status=" + document.getElementById("status").value;
+      isFiltered = true;
+    }
+  }
+
+  if(document.getElementById("limit").value != ""){
+    if(isFiltered){
+      todoURL = todoURL + "&limit=" + document.getElementById("limit").value;
+    }else{
+      todoURL = todoURL + "?limit=" + document.getElementById("limit").value;
+      isFiltered = true;
+    }
+  }
+
+  if(document.getElementById("contains").value != ""){
+    if(isFiltered){
+      todoURL = todoURL + "&contains=" + document.getElementById("contains").value;
+    }else{
+      todoURL = todoURL + "?contains=" + document.getElementById("contains").value;
+      isFiltered = true;
+    }
+
+  }
+
+
+
+
+  var HttpThingy = new HttpClient();
+  HttpThingy.get(todoURL, function(returned_json){
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
+
+
 
 /**
  * Wrapper to make generating http requests easier. Should maybe be moved
