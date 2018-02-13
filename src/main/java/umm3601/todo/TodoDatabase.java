@@ -79,6 +79,12 @@ public class TodoDatabase {
       filteredTodos = filterTodosByLimit(filteredTodos, targetLimit);
     }
 
+    if(queryParams.containsKey("orderBy")){
+      String targetOrder = queryParams.get("orderBy")[0];
+      filteredTodos = filterTodosByOrder(filteredTodos, targetOrder);
+    }
+
+
 
     // Process other query parameters here...
 
@@ -102,21 +108,49 @@ public class TodoDatabase {
 
   }
   public Todo[] filterTodosByContains(Todo[] todos, String targetContains) {
-    return Arrays.stream(todos).filter(x -> checkBody(x.body, targetContains)).toArray(Todo[]::new);
+    return Arrays.stream(todos).filter(x -> x.body.toLowerCase().contains(targetContains.toLowerCase())).toArray(Todo[]::new);
 
   }
 
   public Todo[] filterTodosByOwners(Todo[] todos, String targetOwners){
-    return Arrays.stream(todos).filter(x -> x.owner.equals(targetOwners)).toArray(Todo[]::new);
+    return Arrays.stream(todos).filter(x -> x.owner.toLowerCase().contains(targetOwners.toLowerCase())).toArray(Todo[]::new);
   }
 
   public Todo[] filterTodosByCategory(Todo[] todos, String targetCategory){
     return Arrays.stream(todos).filter(x -> x.category.equals (targetCategory)).toArray(Todo[]::new);
   }
 
+  public Todo[] filterTodosByOrder(Todo[] todos, String targetOrder){
+    Arrays.sort(todos, ((o1, o2) ->
+    {
+      if (targetOrder.equals("status")) {
+        int x = 0;
+        int y = 0;
+        if (o1.status) { x = 1; }
+        if (o2.status) { y = 1; }
+        return x - y;
+      }
 
-  private boolean checkBody(String body, String targetContains) {
-    return body.toLowerCase().contains(targetContains.toLowerCase());
+      if (targetOrder.equals("owner")) {
+        return o1.owner.compareToIgnoreCase(o2.owner);
+      }
+
+      if (targetOrder.equals("category")) {
+        return o1.category.compareToIgnoreCase(o2.category);
+      }
+
+      if (targetOrder.equals("body")) {
+        return o1.body.compareToIgnoreCase(o2.body);
+      }
+
+      if (targetOrder.equals("_id")) {
+        return o1._id.compareToIgnoreCase(o2._id);
+      }
+
+      return 0;
+    }));
+
+    return todos;
   }
 
 }
