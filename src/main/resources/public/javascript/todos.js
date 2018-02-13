@@ -56,9 +56,19 @@ function getAllTodosByFilter() {
       isFiltered = true;
     }
 
+
+
   }
 
+  if(document.getElementById("owner").value != ""){
+    if(isFiltered){
+      todoURL = todoURL + "&owner=" + document.getElementById("owner").value;
+    }else{
+      todoURL = todoURL + "?owner=" + document.getElementById("owner").value;
+      isFiltered = true;
+    }
 
+    }
 
 
   var HttpThingy = new HttpClient();

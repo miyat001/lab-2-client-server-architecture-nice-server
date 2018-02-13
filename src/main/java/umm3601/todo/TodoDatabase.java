@@ -68,6 +68,11 @@ public class TodoDatabase {
       filteredTodos = filterTodosByContains(filteredTodos, targetContains);
     }
 
+    if(queryParams.containsKey("owner")){
+      String targetOwners = queryParams.get("owner")[0];
+      filteredTodos = filterTodosByOwners(filteredTodos, targetOwners);
+    }
+
 
     // Process other query parameters here...
 
@@ -93,6 +98,10 @@ public class TodoDatabase {
   public Todo[] filterTodosByContains(Todo[] todos, String targetContains) {
     return Arrays.stream(todos).filter(x -> checkBody(x.body, targetContains)).toArray(Todo[]::new);
 
+  }
+
+  public Todo[] filterTodosByOwners(Todo[] todos, String targetOwners){
+    return Arrays.stream(todos).filter(x -> x.owner.equals(targetOwners)).toArray(Todo[]::new);
   }
 
   private boolean checkBody(String body, String targetContains) {
